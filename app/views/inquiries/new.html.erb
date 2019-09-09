@@ -1,0 +1,87 @@
+<div class="container" style="background-color: green;">
+	<%= flash[:notice] %>
+	<div class="row">
+		<div class="col-12">
+			<div class="d-flex justify-content-center">
+				<h1 style="margin: 40px 0 20px 0 ; color: red;">お問い合わせ機能</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="d-flex justify-content-center">
+				<%= form_for @inquiry, :url => inquiries_create_path, remote: true do |f| %>
+					<div class="form-group">
+						<%= f.label :名前 %>
+     				    <%= f.text_area :name, id: "send-name", class: "form-control", rows: 1, placeholder: "お名前記入欄" %>
+    				</div>
+    				<div class="form-group">
+						<%= f.label :メールアドレス %>
+     				    <%= f.email_field :email, id: "send-email", class: "form-control", rows: 1, placeholder: "メールアドレス記入欄" %>
+    				</div>
+    				<div class="form-group">
+						<%= f.label :メッセージ %>
+     				    <%= f.text_area :message, id: "send-message", class: "form-control", rows: 9, cols: 60, placeholder: "メッセージ記入欄" %>
+    				</div>
+    				<div class="form-submit" style="margin-bottom: 20px;">
+      					<%= f.submit "問い合わせをする", class: "form-button" %>
+    				</div>
+    				<!-- <a href="#", id="send-mail" class="btn btn-info">お問合せをする</a> -->
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function(){
+		$('.form-button').click(function() {
+
+	    // フォームから入力値を取得
+	    var name = $('#send-name').val();
+	    var email = $('#send-email').val();
+	    var message = $('#send-message').val();
+
+	    // 入力内容の確認
+	    if(name != "" && email != "" && email != "/\A[a-zA-Z0-9]+\z/" && message != ""){
+
+	        toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-center",
+              "preventDuplicates": false,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+            Command: toastr["warning"]("送信完了しました。")
+
+	    } else {
+	      toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-center",
+              "preventDuplicates": false,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+         Command: toastr["error"]("お問い合わせに失敗しました。空欄がないか確認してください。")
+	    }
+
+	    });
+    })
+</script>
