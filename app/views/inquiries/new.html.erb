@@ -1,10 +1,22 @@
-<div class="container" style="background-color: green;">
-	<%= flash[:notice] %>
+<div class="container">
 	<div class="row">
 		<div class="col-12">
 			<div class="d-flex justify-content-center">
-				<h1 style="margin: 40px 0 20px 0 ; color: red;">お問い合わせ機能</h1>
+				<h1 style="margin: 40px 0 20px 0 ;">お問い合わせ機能</h1>
 			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="d-flex justify-content-center">
+				<h3 class="Note-title">注意点</h3>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-10 offset-2">
+			<p>１、名前、メールアドレス、メッセージが全て記入されていないとお問合せできません。ご注意ください。</p>
+			<p>２、メールアドレスは半角で入力してください。</p>
 		</div>
 	</div>
 	<div class="row">
@@ -42,7 +54,7 @@
 	    var message = $('#send-message').val();
 
 	    // 入力内容の確認
-	    if(name != "" && email != "" && email != "/\A[a-zA-Z0-9]+\z/" && message != ""){
+	    if(name != "" && email != "" && message != ""){
 
 	        toastr.options = {
               "closeButton": true,
@@ -60,7 +72,7 @@
               "showMethod": "fadeIn",
               "hideMethod": "fadeOut"
             }
-            Command: toastr["warning"]("送信完了しました。")
+            Command: toastr["warning"]("お問合せありがとうございます。")
 
 	    } else {
 	      toastr.options = {
